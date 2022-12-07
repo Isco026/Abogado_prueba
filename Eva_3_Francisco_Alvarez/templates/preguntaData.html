@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+   <head>
+       <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+       <title>Abogado</title>
+       <!-- CSS only -->
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+       <!-- JavaScript Bundle with Popper -->
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    
+    </head>
+   <body class="container-fluid">
+
+    <nav class="navbar bg-light">
+        <div class="container-fluid p-1" style="background-color: rgb(223, 143, 39)">
+          <a class="navbar-brand" href="#">
+            <img src="{% static 'images/logo.jpg' %}" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+            Buró Buffete de Abogados</a>
+        </div>
+      </nav>
+
+
+    <div class="alert alert-succes display-6 text-center" style="background-color: rgb(49, 78, 204)">LISTA DE CONSULTAS</div>
+       {%if pregunta %}
+       <table class="table">
+           <thead>
+               <tr>
+                   <th>Codigo Consulta</th>
+                   <th>Codigo Respuesta</th>
+                   <th>Cliente</th>
+                   <th>Consulta</th>
+               </tr>
+           </thead>
+           <tbody>
+               {% for dato in pregunta %}
+               <tr>
+                   <td> {{ dato.codigo_consulta }}</td>
+                   <td> {{ dato.codigo_respuesta }}</td>
+                   <td> {{ dato.cliente }}</td>
+                   <td> {{ dato.consulta }}</td>
+               </tr>
+               {% endfor %}
+           </tbody>
+        </table>
+        {% else %}
+        <div class="alert alert-info">Sin datos</div>
+        {% endif %}
+
+    <div class="alert alert-info display-6 text-center">RESPUESTA</div>
+
+    <form method= "post">
+        <table class="table-bordered">
+            {{ form }}
+            {% csrf_token %}  
+        </table>
+        <input type="submit" value="Enviar Respuesta" class="btn btn-success" style="float: right">
+    </form>
+
+    <footer class="bg-light text-center text-lg-start mt-5">
+        <!-- Copyright -->
+        <div class="text-center p-1" style="background-color: rgba(0, 0, 0, 0.2);">
+            <p>Direccion: Calle Falsa #123 Sprinfield</p>
+            Contacto:
+          <a class="text-dark" href="mailto:francisco.alvarez44@inacapmail.cl">francisco.alvarez44@inacapmail.cl</a>
+        </div>
+        <!-- Copyright -->
+      </footer>
+
+    </body>
+ </html>
